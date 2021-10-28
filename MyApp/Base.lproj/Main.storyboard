@@ -40,21 +40,21 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4j-uY-U9D">
                                 <rect key="frame" x="80" y="374.5" width="254" height="31"/>
-                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                <color key="tintColor" systemColor="systemPurpleColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Sing up"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Sing up"/>
                                 <connections>
                                     <action selector="singUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FRG-Q0-MqS"/>
+                                    <segue destination="MgO-0G-YL4" kind="show" id="sQ8-WO-f5U"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyX-ir-HwT">
                                 <rect key="frame" x="80" y="323.5" width="254" height="31"/>
-                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                <color key="tintColor" systemColor="systemPurpleColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Continue"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Continue"/>
                                 <connections>
                                     <action selector="continue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ycw-h3-POg"/>
-                                    <segue destination="MgO-0G-YL4" kind="show" id="LTx-cw-BQm"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -81,6 +81,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="labelEmail" destination="10y-SE-Vtm" id="UyY-7u-KbQ"/>
+                        <outlet property="labelLogIn" destination="YIa-if-2By" id="jq7-tV-EzA"/>
                         <outlet property="password" destination="rgI-5t-q2T" id="rhr-mw-6yN"/>
                         <outlet property="username" destination="c0H-zn-TEp" id="Fkl-Wy-KFV"/>
                     </connections>
@@ -137,16 +139,16 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNu-3h-B0m">
                                 <rect key="frame" x="170" y="234" width="74.5" height="31"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="systemPurpleColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Dismiss"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Dismiss"/>
                                 <connections>
                                     <action selector="dismiss:" destination="MgO-0G-YL4" eventType="touchUpInside" id="p2d-2q-aPI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WXh-ga-uQe">
                                 <rect key="frame" x="168" y="175" width="78" height="31"/>
-                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                <color key="tintColor" systemColor="systemPurpleColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Register"/>
                                 <connections>
@@ -179,6 +181,9 @@
                     <navigationItem key="navigationItem" id="9lm-tC-S1Q"/>
                     <connections>
                         <outlet property="email" destination="ODo-4C-jJQ" id="8T3-JE-A9X"/>
+                        <outlet property="labelEmailRegister" destination="qeH-le-inu" id="B0V-aA-yN2"/>
+                        <outlet property="labelSignUpWithSN" destination="zon-rw-jT0" id="dgS-O7-Qqt"/>
+                        <outlet property="labelSingUp" destination="EUZ-9A-6pF" id="NKw-7u-CUY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aIY-Bs-fEg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -190,11 +195,11 @@
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

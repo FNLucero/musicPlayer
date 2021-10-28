@@ -11,31 +11,27 @@ class RegisterViewController: UIViewController {
 
     @IBOutlet weak var email: UITextField!
     
+    @IBOutlet weak var labelSignUpWithSN: UILabel!
+    @IBOutlet weak var labelEmailRegister: UILabel!
+    @IBOutlet weak var labelSingUp: UILabel!
+    
+    var tipoError: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        print(#function)
+        
+        
+        view.backgroundColor = UIColor(named: "ColorPrincipal")
+        labelSignUpWithSN.textColor = UIColor(named: "ColorSecundario")
+        labelEmailRegister.textColor = UIColor(named: "ColorSecundario")
+        labelSingUp.textColor = UIColor(named: "ColorSecundario")
     }
     
     @IBAction func register(_ sender: Any) {
         print(#function)
-        /*
-        if let user = email{
-            let emailText = (self.email.text)!
-            let resultToValidateEmail = validateTheLargeOfTextField(value: emailText)
-            
 
-            print("Resultados user \(resultToValidateEmail)")
-            
-            resultToValidateEmail ? print("Email registrado") : print("email invalido")
-            
-        }*/
-        let emailText = self.email.text
-        
-        let resultToValidatemail = validateTheLargeOfTextField(value: emailText!)
-        
-        resultToValidatemail ? print("Email Valido") : print("Email invalido")
-        
+        validateTextfields() ? print("Email valido") : print("Usuario invalido: Codigo de error \(tipoError)")
     }
     
     @IBAction func dismiss(_ sender: Any) {
@@ -48,17 +44,24 @@ class RegisterViewController: UIViewController {
     }
     
     
-    func validateTheLargeOfTextField(value text: String)-> Bool{
-        return text != "" && text.count > 10 ? true : false
+    /**
+        Esta funcion se encarga de validar todos los textfields de la vista SignUp, asignandole un numero de error a la propiedad tipoError
+        y devolviendo un booleano, el cual es resultado de la validacion
+     */
+    func validateTextfields()-> Bool{
+        guard let emailString = email.text, emailString.count > 0 else{
+            print("Email sin contenido")
+            tipoError = 1
+            return false
+        }
+        guard emailString.contains("@"), emailString.count >= 10 else{
+            print("El email no tiene @ o tiene menos de 10 caracteres")
+            tipoError = 2
+            return false
+        }
+        
+        return true
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
