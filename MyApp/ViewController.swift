@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     
     var tipoError: Int = 0
+    let registros = Registered()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class ViewController: UIViewController {
 
     @IBAction func `continue`(_ sender: Any) {
         print(#function)
-        validateTextfields() ? print("Autenticar usuario") : print("Usuario invalido: Codigo de error \(tipoError)")
+        validateTextfieldsAndCorrectLogin() ? goToMainController() : print("Usuario invalido: Codigo de error \(tipoError)")
     }
     
     @IBAction func singUp(_ sender: Any) {
@@ -37,9 +38,9 @@ class ViewController: UIViewController {
     
     /**
         Esta funcion se encarga de validar todos los textfields de la vista Login, asignandole un numero de error a la propiedad tipoError
-        y devolviendo un booleano, el cual es resultado de la validacion
+        y devolviendo un booleano, el cual es resultado de la validacion y contenido del user y pass
      */
-    func validateTextfields()-> Bool{
+    func validateTextfieldsAndCorrectLogin()-> Bool{
         guard let userString = username.text, userString.count > 0 else{
             print("Email sin contenido")
             tipoError = 1
@@ -61,7 +62,26 @@ class ViewController: UIViewController {
             tipoError = 4
             return false
         }
-        return true
+        let resultadoValidacion: Bool = validateEmailAndPass(userText: userString, passText: passString)
+        resultadoValidacion ? print("Usuario validad") : print("Usuario o contraseña incorrecta")
+        return resultadoValidacion
+    }
+    
+    func validateEmailAndPass(userText: String, passText: String)-> Bool{
+        return (registros.user1.user == userText && registros.user1.pass == passText) ? true : false
+    }
+    
+    
+    func goToMainController() {
+        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MainViewController") as? WelcomeViewController
+          vc?.modalPresentationStyle = .fullScreen
+        guard let vc = vc else { return }
+        
+        self.present(vc, animated: true)
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 }
-

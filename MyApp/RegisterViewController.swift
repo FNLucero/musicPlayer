@@ -36,6 +36,7 @@ class RegisterViewController: UIViewController {
     
     @IBAction func dismiss(_ sender: Any) {
         print(#function)
+        dismiss(animated: true, completion: nil)
     }
     
     
@@ -63,5 +64,8 @@ class RegisterViewController: UIViewController {
         return true
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 
 }

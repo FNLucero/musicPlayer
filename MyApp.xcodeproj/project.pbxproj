@@ -17,6 +17,8 @@
 		26A5C3682722F4A10063BDF9 /* MyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A5C3672722F4A10063BDF9 /* MyAppTests.swift */; };
 		26A5C3722722F4A10063BDF9 /* MyAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A5C3712722F4A10063BDF9 /* MyAppUITests.swift */; };
 		26A5C3742722F4A10063BDF9 /* MyAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A5C3732722F4A10063BDF9 /* MyAppUITestsLaunchTests.swift */; };
+		26A84E55272C1D6E004AE62D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A84E54272C1D6E004AE62D /* WelcomeViewController.swift */; };
+		26A84E57272C2DFB004AE62D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A84E56272C2DFB004AE62D /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		26A5C36D2722F4A10063BDF9 /* MyAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26A5C3712722F4A10063BDF9 /* MyAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppUITests.swift; sourceTree = "<group>"; };
 		26A5C3732722F4A10063BDF9 /* MyAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		26A84E54272C1D6E004AE62D /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		26A84E56272C2DFB004AE62D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		26C81610272B284B00659AE1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +90,7 @@
 				26A5C3662722F4A10063BDF9 /* MyAppTests */,
 				26A5C3702722F4A10063BDF9 /* MyAppUITests */,
 				26A5C34E2722F49F0063BDF9 /* Products */,
+				26C8160F272B284B00659AE1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +115,8 @@
 				26A5C35B2722F4A10063BDF9 /* LaunchScreen.storyboard */,
 				26A5C35E2722F4A10063BDF9 /* Info.plist */,
 				2666B6302729B65E0066D2D3 /* RegisterViewController.swift */,
+				26A84E54272C1D6E004AE62D /* WelcomeViewController.swift */,
+				26A84E56272C2DFB004AE62D /* Model.swift */,
 			);
 			path = MyApp;
 			sourceTree = "<group>";
@@ -128,6 +136,14 @@
 				26A5C3732722F4A10063BDF9 /* MyAppUITestsLaunchTests.swift */,
 			);
 			path = MyAppUITests;
+			sourceTree = "<group>";
+		};
+		26C8160F272B284B00659AE1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				26C81610272B284B00659AE1 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,7 +278,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				26A5C3552722F49F0063BDF9 /* ViewController.swift in Sources */,
+				26A84E55272C1D6E004AE62D /* WelcomeViewController.swift in Sources */,
 				26A5C3512722F49F0063BDF9 /* AppDelegate.swift in Sources */,
+				26A84E57272C2DFB004AE62D /* Model.swift in Sources */,
 				26A5C3532722F49F0063BDF9 /* SceneDelegate.swift in Sources */,
 				2666B6312729B65E0066D2D3 /* RegisterViewController.swift in Sources */,
 			);
