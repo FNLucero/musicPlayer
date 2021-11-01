@@ -16,6 +16,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var labelSingUp: UILabel!
     
     var tipoError: Int = 0
+    var identificadorColor: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,8 @@ class RegisterViewController: UIViewController {
     
     @IBAction func singUpWithFacebook(_ sender: Any) {
         print(#function)
+        identificadorColor = identificadorColor==3 ? 0 : identificadorColor + 1
+        labelSignUpWithSN.textColor = UIColor(named: "Color-\(identificadorColor)")
     }
     
     
