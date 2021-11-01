@@ -37,8 +37,8 @@ class ViewController: UIViewController {
     }
     
     /**
-        Esta funcion se encarga de validar todos los textfields de la vista Login, asignandole un numero de error a la propiedad tipoError
-        y devolviendo un booleano, el cual es resultado de la validacion y contenido del user y pass
+    Esta funcion se encarga de validar todos los textfields de la vista Login, asignandole un numero de error a la propiedad tipoError
+    y devolviendo un booleano, el cual es resultado de la validacion y contenido del user y pass
      */
     func validateTextfieldsAndCorrectLogin()-> Bool{
         guard let userString = username.text, userString.count > 0 else{
@@ -46,8 +46,8 @@ class ViewController: UIViewController {
             tipoError = 1
             return false
         }
-        guard userString.contains("@"), userString.count >= 10 else{
-            print("El email no tiene @ o tiene menos de 10 caracteres")
+        guard validateEmailStructure(email: userString), userString.count >= 10 else{
+            print("El email no tiene el formato correcto")
             tipoError = 2
             return false
         }
@@ -67,20 +67,39 @@ class ViewController: UIViewController {
         return resultadoValidacion
     }
     
+    /**
+    Esta funcion se encarga de validar todos los textfields de la vista Login, asignandole un numero de error a la propiedad tipoError
+    y devolviendo un booleano, el cual es resultado de la validacion y contenido del user y pass
+     - Parameter: userText: Email a validar
+     - Parameter: passText: Contraseña a validar
+     */
     func validateEmailAndPass(userText: String, passText: String)-> Bool{
         return (registros.user1.user == userText && registros.user1.pass == passText) ? true : false
     }
     
+    /**
+    Funcion que valida por medio de una regex si un email es valido o no, devolviendo un booleano
+     */
+    func validateEmailStructure(email contentString: String) -> Bool {
+        let patron = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let regExp = try! NSRegularExpression(pattern: patron, options: [])
+        let coincidencias = regExp.matches(in: contentString, options: [], range: NSRange(location: 0, length: contentString.count))
+        return coincidencias.count == 1 ? true : false
+    }
     
+    /**
+     Funcion que direcciona a MainController
+     */
     func goToMainController() {
         let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MainViewController") as? WelcomeViewController
           vc?.modalPresentationStyle = .fullScreen
         guard let vc = vc else { return }
-        
         self.present(vc, animated: true)
-        
     }
     
+    /**
+     Funcion que minimiza el teclado en caso de tocar la pantalla
+     */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }

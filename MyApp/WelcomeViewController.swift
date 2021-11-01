@@ -10,6 +10,7 @@ import UIKit
 class WelcomeViewController: UIViewController {
 
     @IBOutlet weak var imagenLogo: UIImageView!
+    @IBOutlet weak var labelBienvenido: UILabel!
     
     @IBOutlet weak var LogOut: UIButton!
     
@@ -17,7 +18,7 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(named: "ColorPrincipal")
-        
+        labelBienvenido.textColor = UIColor(named: "ColorSecundario")
         imagenLogo.image = UIImage(systemName: "person.fill")
     }
 

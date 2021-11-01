@@ -21,7 +21,6 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         print(#function)
         
-        
         view.backgroundColor = UIColor(named: "ColorPrincipal")
         labelSignUpWithSN.textColor = UIColor(named: "ColorSecundario")
         labelEmailRegister.textColor = UIColor(named: "ColorSecundario")
@@ -55,15 +54,27 @@ class RegisterViewController: UIViewController {
             tipoError = 1
             return false
         }
-        guard emailString.contains("@"), emailString.count >= 10 else{
+        guard validateEmailStructure(email: emailString), emailString.count >= 10 else{
             print("El email no tiene @ o tiene menos de 10 caracteres")
             tipoError = 2
             return false
         }
-        
         return true
     }
-
+    
+    /**
+    Funcion que valida por medio de una regex si un email es valido o no, devolviendo un booleano
+     */
+    func validateEmailStructure(email contentString: String) -> Bool {
+        let patron = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let regExp = try! NSRegularExpression(pattern: patron, options: [])
+        let coincidencias = regExp.matches(in: contentString, options: [], range: NSRange(location: 0, length: contentString.count))
+        return coincidencias.count == 1 ? true : false
+    }
+    
+    /**
+     Funcion que minimiza el teclado en caso de tocar la pantalla
+     */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
