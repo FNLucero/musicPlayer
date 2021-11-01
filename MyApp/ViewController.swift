@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var labelLogIn: UILabel!
     @IBOutlet weak var labelEmail: UILabel!
     
+    @IBOutlet weak var labelPassword: UILabel!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     
@@ -25,6 +26,7 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor(named: "ColorPrincipal")
         labelEmail.textColor = UIColor(named: "ColorSecundario")
         labelLogIn.textColor = UIColor(named: "ColorSecundario")
+        labelPassword.textColor = UIColor(named: "ColorSecundario")
     }
 
     @IBAction func `continue`(_ sender: Any) {

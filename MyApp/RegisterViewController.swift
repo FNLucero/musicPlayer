@@ -42,7 +42,7 @@ class RegisterViewController: UIViewController {
     
     @IBAction func singUpWithFacebook(_ sender: Any) {
         print(#function)
-        identificadorColor = identificadorColor==3 ? 0 : identificadorColor + 1
+        identificadorColor = identificadorColor == 3 ? 1 : identificadorColor + 1
         labelSignUpWithSN.textColor = UIColor(named: "Color-\(identificadorColor)")
     }
     
