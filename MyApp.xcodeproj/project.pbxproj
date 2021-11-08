@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		265ED495273558AB00981CB0 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265ED494273558AB00981CB0 /* TrackTableViewCell.swift */; };
+		265ED497273567DF00981CB0 /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265ED496273567DF00981CB0 /* AudioPlayerViewController.swift */; };
 		2666B6312729B65E0066D2D3 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2666B6302729B65E0066D2D3 /* RegisterViewController.swift */; };
 		26A5C3512722F49F0063BDF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A5C3502722F49F0063BDF9 /* AppDelegate.swift */; };
 		26A5C3532722F49F0063BDF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A5C3522722F49F0063BDF9 /* SceneDelegate.swift */; };
@@ -20,6 +22,7 @@
 		26A766FD2732FD39004BA6D1 /* TracksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A766FC2732FD39004BA6D1 /* TracksTableViewController.swift */; };
 		26A84E55272C1D6E004AE62D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A84E54272C1D6E004AE62D /* WelcomeViewController.swift */; };
 		26A84E57272C2DFB004AE62D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A84E56272C2DFB004AE62D /* Model.swift */; };
+		26BA693E27344FF7002967A0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA693D27344FF7002967A0 /* Protocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		265ED494273558AB00981CB0 /* TrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
+		265ED496273567DF00981CB0 /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
 		2666B6302729B65E0066D2D3 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		26A5C34D2722F49F0063BDF9 /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26A5C3502722F49F0063BDF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +63,7 @@
 		26A766FE273308FE004BA6D1 /* pruebaSongs.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = pruebaSongs.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		26A84E54272C1D6E004AE62D /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		26A84E56272C2DFB004AE62D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		26BA693D27344FF7002967A0 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		26C81610272B284B00659AE1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -112,16 +118,19 @@
 			children = (
 				26A5C3502722F49F0063BDF9 /* AppDelegate.swift */,
 				26A5C3522722F49F0063BDF9 /* SceneDelegate.swift */,
-				26A5C3542722F49F0063BDF9 /* ViewController.swift */,
 				26A5C3562722F49F0063BDF9 /* Main.storyboard */,
 				26A5C3592722F4A10063BDF9 /* Assets.xcassets */,
 				26A5C35B2722F4A10063BDF9 /* LaunchScreen.storyboard */,
 				26A5C35E2722F4A10063BDF9 /* Info.plist */,
+				26A5C3542722F49F0063BDF9 /* ViewController.swift */,
 				2666B6302729B65E0066D2D3 /* RegisterViewController.swift */,
 				26A84E54272C1D6E004AE62D /* WelcomeViewController.swift */,
-				26A84E56272C2DFB004AE62D /* Model.swift */,
 				26A766FC2732FD39004BA6D1 /* TracksTableViewController.swift */,
+				265ED496273567DF00981CB0 /* AudioPlayerViewController.swift */,
+				26A84E56272C2DFB004AE62D /* Model.swift */,
+				26BA693D27344FF7002967A0 /* Protocols.swift */,
 				26A766FE273308FE004BA6D1 /* pruebaSongs.playground */,
+				265ED494273558AB00981CB0 /* TrackTableViewCell.swift */,
 			);
 			path = MyApp;
 			sourceTree = "<group>";
@@ -283,8 +292,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				26A5C3552722F49F0063BDF9 /* ViewController.swift in Sources */,
+				26BA693E27344FF7002967A0 /* Protocols.swift in Sources */,
+				265ED497273567DF00981CB0 /* AudioPlayerViewController.swift in Sources */,
 				26A84E55272C1D6E004AE62D /* WelcomeViewController.swift in Sources */,
 				26A766FD2732FD39004BA6D1 /* TracksTableViewController.swift in Sources */,
+				265ED495273558AB00981CB0 /* TrackTableViewCell.swift in Sources */,
 				26A5C3512722F49F0063BDF9 /* AppDelegate.swift in Sources */,
 				26A84E57272C2DFB004AE62D /* Model.swift in Sources */,
 				26A5C3532722F49F0063BDF9 /* SceneDelegate.swift in Sources */,

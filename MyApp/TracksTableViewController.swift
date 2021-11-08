@@ -9,13 +9,14 @@ import UIKit
 
 class TracksTableViewController: UITableViewController {
 
-    let canciones = saveSongLists()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.black
         
+        //IMPORTANTE
+        //Indica al tableView de que tipo de celda va a mostrar -- Paso 1
+        self.tableView.register(TrackTableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -31,20 +32,21 @@ class TracksTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("La cantidad de canciones de la lista es de ",canciones.songList.count)
-        
-        return canciones.songList.count
+        return songList.count
         
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        cell.backgroundColor = UIColor.black
-        cell.textLabel?.text = canciones.songList[indexPath.row].title
-        cell.textLabel?.textColor = UIColor.systemPink
-
-        return cell
+        //Casteo a tipo Paso 1, casteo con paso 1 aseguro que funciona
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! TrackTableViewCell
+        
+        let elTrack = songList[indexPath.row]
+        let claseCell = TrackTableViewCell(style: .default, reuseIdentifier: "reuseIdentifier", track: elTrack)
+        
+        claseCell.track = elTrack
+        
+        return claseCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

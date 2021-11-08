@@ -93,7 +93,7 @@ class ViewController: UIViewController {
      Funcion que direcciona a MainController
      */
     func goToMainController() {
-        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MainViewController") as? WelcomeViewController
+        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "InicioTabBarViewController") as? UITabBarController
           vc?.modalPresentationStyle = .fullScreen
         guard let vc = vc else { return }
         self.present(vc, animated: true)
