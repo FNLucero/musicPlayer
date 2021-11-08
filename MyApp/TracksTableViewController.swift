@@ -7,8 +7,16 @@
 
 import UIKit
 
-class TracksTableViewController: UITableViewController {
-
+class TracksTableViewController: UITableViewController, ButtonOnCellDelegate {
+    
+    func buttonTouchedOnCell(cell: UITableViewCell) {
+        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "audioPlayerVC") as? AudioPlayerViewController
+        vc?.modalPresentationStyle = .popover
+        guard let vc = vc else { return }
+        self.present(vc, animated: true)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,9 +52,14 @@ class TracksTableViewController: UITableViewController {
         let elTrack = songList[indexPath.row]
         let claseCell = TrackTableViewCell(style: .default, reuseIdentifier: "reuseIdentifier", track: elTrack)
         
+        //cell.track = elTrack
+        //cell.parent = self
+        
         claseCell.track = elTrack
+        claseCell.parent = self as ButtonOnCellDelegate
         
         return claseCell
+        //return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

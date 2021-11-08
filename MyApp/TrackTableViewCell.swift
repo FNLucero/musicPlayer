@@ -34,6 +34,15 @@ class TrackTableViewCell: UITableViewCell {
                 
         initializeComponents()
 
+        buttonPlay.addTarget(self, action: #selector(botonTouchFuncion), for: .touchUpInside)
+        
+
+    }
+    
+    @objc func botonTouchFuncion(){
+        if self.parent != nil {
+            parent!.buttonTouchedOnCell(cell: self)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -67,8 +76,6 @@ class TrackTableViewCell: UITableViewCell {
         self.contentView.addSubview(imageViewAlbum)
         
         buttonPlay.clipsToBounds = true
-        //buttonPlay.frame = CGRect(x: 300, y: 8, width: 24, height: 24)
-        //buttonPlay.layer.cornerRadius = buttonPlay.frame.size.height * 0.5
         buttonPlay.backgroundColor = UIColor.black
         buttonPlay.setImage(UIImage(named: "ImagePlay"), for: .normal)
         buttonPlay.translatesAutoresizingMaskIntoConstraints = false

@@ -104,7 +104,7 @@
         <!--Audio Player View Controller-->
         <scene sceneID="B5J-lu-WyJ">
             <objects>
-                <viewController id="V1q-PE-Pay" customClass="AudioPlayerViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="audioPlayerVC" id="V1q-PE-Pay" customClass="AudioPlayerViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sHK-bs-bfb">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FiR-YL-sHF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2457" y="465"/>
+            <point key="canvasLocation" x="2019" y="465"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="d7T-Jt-I5H">
@@ -126,8 +126,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Gwa-ie-We4" kind="relationship" relationship="viewControllers" id="vdW-rW-dvI"/>
                         <segue destination="ZxZ-bH-agP" kind="relationship" relationship="viewControllers" id="KR2-zR-jrg"/>
+                        <segue destination="Gwa-ie-We4" kind="relationship" relationship="viewControllers" id="vdW-rW-dvI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ljo-0c-DY3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -321,7 +321,7 @@
                             <outlet property="delegate" destination="ZxZ-bH-agP" id="DMo-o8-0r1"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Canciones" image="ImageAlbum" id="CrT-kP-wxX"/>
+                    <tabBarItem key="tabBarItem" title="Canciones" image="music.note" catalog="system" id="CrT-kP-wxX"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nCA-ZZ-yKP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -329,8 +329,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ImageAlbum" width="24" height="24"/>
         <image name="brain.head.profile" catalog="system" width="114" height="128"/>
+        <image name="music.note" catalog="system" width="97" height="128"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

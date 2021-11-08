@@ -18,7 +18,7 @@ class AudioPlayerViewController: UIViewController {
         label1.backgroundColor = UIColor(displayP3Red: 0.0, green: 1.0, blue: 0.5, alpha: 0.5)
         label1.autoresizingMask = .flexibleWidth
         label1.translatesAutoresizingMaskIntoConstraints = true
-        label1.frame = CGRect(x: 0, y: 50, width: 4, height: 50)
+        label1.frame = CGRect(x: 0, y: 50, width: view.frame.width, height: 50)
         label1.textAlignment = .center
         self.view.addSubview(label1)
         
