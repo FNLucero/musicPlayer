@@ -9,10 +9,13 @@ import UIKit
 
 class TracksTableViewController: UITableViewController, ButtonOnCellDelegate {
     
+    var songTitle: String?
+    
     func buttonTouchedOnCell(cell: UITableViewCell) {
         let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "audioPlayerVC") as? AudioPlayerViewController
         vc?.modalPresentationStyle = .popover
         guard let vc = vc else { return }
+        vc.songTitle = self.songTitle
         self.present(vc, animated: true)
     }
     

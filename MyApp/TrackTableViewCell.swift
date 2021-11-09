@@ -29,19 +29,16 @@ class TrackTableViewCell: UITableViewCell {
     init(style: UITableViewCell.CellStyle, reuseIdentifier: String?, track: Track?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.track = track
-        
         self.backgroundColor = UIColor.black
-                
         initializeComponents()
-
         buttonPlay.addTarget(self, action: #selector(botonTouchFuncion), for: .touchUpInside)
-        
-
     }
     
     @objc func botonTouchFuncion(){
         if self.parent != nil {
-            parent!.buttonTouchedOnCell(cell: self)
+            let trackVC = parent as! TracksTableViewController
+            trackVC.songTitle = self.track?.title
+            trackVC.buttonTouchedOnCell(cell: self)
         }
     }
     

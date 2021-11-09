@@ -34,6 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @IBAction func `continue` (_ sender: Any){
         
     }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        print(#function)
+      }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        print(#function)
+      }
 
 }
 
