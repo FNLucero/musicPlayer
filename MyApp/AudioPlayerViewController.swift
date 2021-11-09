@@ -18,7 +18,7 @@ class AudioPlayerViewController: UIViewController {
 
         labelTitulo.text = "AudioPlayer"
         labelTitulo.font = UIFont.systemFont(ofSize: 30)
-        labelTitulo.backgroundColor = UIColor(displayP3Red: 0.0, green: 1.0, blue: 0.5, alpha: 0.5)
+        labelTitulo.backgroundColor = UIColor(displayP3Red: 1.0, green: 0.0, blue: 0.5, alpha: 0.3)
         labelTitulo.autoresizingMask = .flexibleWidth
         labelTitulo.translatesAutoresizingMaskIntoConstraints = true
         labelTitulo.frame = CGRect(x: 0, y: 50, width: view.frame.width, height: 50)
