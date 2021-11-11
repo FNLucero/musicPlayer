@@ -143,9 +143,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brain.head.profile" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="suo-QX-zxW">
-                                <rect key="frame" x="89" y="142.33333333333331" width="250" height="203.33333333333334"/>
+                                <rect key="frame" x="89" y="142.33333333333331" width="250" height="153.33333333333334"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="apB-wQ-hqh"/>
+                                    <constraint firstAttribute="height" constant="150" id="Rdh-TO-ndr"/>
                                     <constraint firstAttribute="width" constant="250" id="xEL-M7-JQ3"/>
                                 </constraints>
                             </imageView>
