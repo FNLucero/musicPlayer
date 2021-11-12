@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2625EA94273ED039002AEDEB /* bensound-ukulele.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2625EA93273ED039002AEDEB /* bensound-ukulele.mp3 */; };
+		2625EA97273ED110002AEDEB /* SwiftySound in Frameworks */ = {isa = PBXBuildFile; productRef = 2625EA96273ED110002AEDEB /* SwiftySound */; };
 		265ED495273558AB00981CB0 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265ED494273558AB00981CB0 /* TrackTableViewCell.swift */; };
 		265ED497273567DF00981CB0 /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265ED496273567DF00981CB0 /* AudioPlayerViewController.swift */; };
 		2666B6312729B65E0066D2D3 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2666B6302729B65E0066D2D3 /* RegisterViewController.swift */; };
@@ -45,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2625EA93273ED039002AEDEB /* bensound-ukulele.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-ukulele.mp3"; sourceTree = "<group>"; };
 		265ED494273558AB00981CB0 /* TrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
 		265ED496273567DF00981CB0 /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
 		2666B6302729B65E0066D2D3 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2625EA97273ED110002AEDEB /* SwiftySound in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +126,7 @@
 		26A5C34F2722F49F0063BDF9 /* MyApp */ = {
 			isa = PBXGroup;
 			children = (
+				2625EA93273ED039002AEDEB /* bensound-ukulele.mp3 */,
 				26B852AF273D925C0061F4EA /* stegosaurus-studio.gif */,
 				26A5C3502722F49F0063BDF9 /* AppDelegate.swift */,
 				26A5C3522722F49F0063BDF9 /* SceneDelegate.swift */,
@@ -186,6 +191,9 @@
 			dependencies = (
 			);
 			name = MyApp;
+			packageProductDependencies = (
+				2625EA96273ED110002AEDEB /* SwiftySound */,
+			);
 			productName = MyApp;
 			productReference = 26A5C34D2722F49F0063BDF9 /* MyApp.app */;
 			productType = "com.apple.product-type.application";
@@ -259,6 +267,9 @@
 				Base,
 			);
 			mainGroup = 26A5C3442722F49F0063BDF9;
+			packageReferences = (
+				2625EA95273ED110002AEDEB /* XCRemoteSwiftPackageReference "SwiftySound" */,
+			);
 			productRefGroup = 26A5C34E2722F49F0063BDF9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -277,6 +288,7 @@
 			files = (
 				26B852B0273D925C0061F4EA /* stegosaurus-studio.gif in Resources */,
 				26A5C35D2722F4A10063BDF9 /* LaunchScreen.storyboard in Resources */,
+				2625EA94273ED039002AEDEB /* bensound-ukulele.mp3 in Resources */,
 				26A5C35A2722F4A10063BDF9 /* Assets.xcassets in Resources */,
 				26A5C3582722F49F0063BDF9 /* Main.storyboard in Resources */,
 			);
@@ -678,6 +690,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2625EA95273ED110002AEDEB /* XCRemoteSwiftPackageReference "SwiftySound" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamcichy/SwiftySound.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2625EA96273ED110002AEDEB /* SwiftySound */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2625EA95273ED110002AEDEB /* XCRemoteSwiftPackageReference "SwiftySound" */;
+			productName = SwiftySound;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 26A5C3452722F49F0063BDF9 /* Project object */;
 }
