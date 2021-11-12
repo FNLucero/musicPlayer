@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2625EA94273ED039002AEDEB /* bensound-ukulele.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2625EA93273ED039002AEDEB /* bensound-ukulele.mp3 */; };
 		2625EA97273ED110002AEDEB /* SwiftySound in Frameworks */ = {isa = PBXBuildFile; productRef = 2625EA96273ED110002AEDEB /* SwiftySound */; };
+		2625EA99273F067E002AEDEB /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2625EA98273F067E002AEDEB /* AppUtility.swift */; };
 		265ED495273558AB00981CB0 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265ED494273558AB00981CB0 /* TrackTableViewCell.swift */; };
 		265ED497273567DF00981CB0 /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265ED496273567DF00981CB0 /* AudioPlayerViewController.swift */; };
 		2666B6312729B65E0066D2D3 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2666B6302729B65E0066D2D3 /* RegisterViewController.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		2625EA93273ED039002AEDEB /* bensound-ukulele.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-ukulele.mp3"; sourceTree = "<group>"; };
+		2625EA98273F067E002AEDEB /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		265ED494273558AB00981CB0 /* TrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
 		265ED496273567DF00981CB0 /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
 		2666B6302729B65E0066D2D3 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				26B852AB273D82E50061F4EA /* MyApp-Bridging-Header.h */,
 				26A84E56272C2DFB004AE62D /* Model.swift */,
 				26BA693D27344FF7002967A0 /* Protocols.swift */,
+				2625EA98273F067E002AEDEB /* AppUtility.swift */,
 			);
 			path = MyApp;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				26B852AE273D82E50061F4EA /* UIImageanimatedGIF.m in Sources */,
 				265ED495273558AB00981CB0 /* TrackTableViewCell.swift in Sources */,
 				26A5C3512722F49F0063BDF9 /* AppDelegate.swift in Sources */,
+				2625EA99273F067E002AEDEB /* AppUtility.swift in Sources */,
 				26A84E57272C2DFB004AE62D /* Model.swift in Sources */,
 				26A5C3532722F49F0063BDF9 /* SceneDelegate.swift in Sources */,
 				2666B6312729B65E0066D2D3 /* RegisterViewController.swift in Sources */,

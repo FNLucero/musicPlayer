@@ -21,8 +21,10 @@ class AudioPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSong), userInfo: nil, repeats: true)
 
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "ColorPrincipal")
         
         labelTitulo.text = "AudioPlayer"
         labelTitulo.font = UIFont.systemFont(ofSize: 30)
@@ -68,6 +70,7 @@ class AudioPlayerViewController: UIViewController {
         sliderVolume.frame = CGRect(x: 20, y: 250, width: self.view.frame.width - 40, height: 30)
         sliderVolume.value = 1
         self.view.addSubview(sliderVolume)
+        sliderVolume.addTarget(self, action: #selector(slideVolumenChange), for: .valueChanged)
         
         enableGif()
     }
@@ -78,8 +81,11 @@ class AudioPlayerViewController: UIViewController {
         }
         Sound.enabled = true
         song = Sound(url: fileSongURL)
-        song?.volume = sliderVolume.value
+        song?.volume = 1
         song?.play()
+        
+        print("La duracion de la cancion es de ....\( 1.0  / (song!.duration) )")
+        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -89,7 +95,7 @@ class AudioPlayerViewController: UIViewController {
             imageViewGif!.frame=CGRect(x: 0, y: 300, width: self.view.frame.width, height: 150)
         } else {
             print("Portrait")
-            imageViewGif!.frame=CGRect(x: 0, y: 300, width: self.view.frame.width, height: 150)
+            imageViewGif!.frame=CGRect(x: 0, y: 300, width: self.view.frame.width, height: 20)
         }
     }
     
@@ -108,7 +114,14 @@ class AudioPlayerViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AppUtility.lockOrientation(.portrait)
         labelTitulo.text = songTitle
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppUtility.lockOrientation(.all)
     }
     
     func enableGif(){
@@ -137,7 +150,15 @@ class AudioPlayerViewController: UIViewController {
         song?.pause()
     }
     
-
+    @objc func slideVolumenChange(){
+        song?.volume = sliderVolume.value
+    }
+    
+    @objc func updateSong(){
+        let porcentual: Double =  ( 1.0  / (song!.duration) )
+        sliderTrack.value += Float (porcentual)
+    }
+    
     /*
     // MARK: - Navigation
 
