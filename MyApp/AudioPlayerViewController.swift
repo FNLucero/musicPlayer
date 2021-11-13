@@ -16,13 +16,14 @@ class AudioPlayerViewController: UIViewController {
     let sliderTrack = UISlider()
     let sliderVolume = UISlider()
     var song: Sound?
+    var timer: Timer?
     
     var imageViewGif: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSong), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSong), userInfo: nil, repeats: true)
 
         view.backgroundColor = UIColor(named: "ColorPrincipal")
         
@@ -88,17 +89,6 @@ class AudioPlayerViewController: UIViewController {
         
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-            imageViewGif!.frame=CGRect(x: 0, y: 300, width: self.view.frame.width, height: 150)
-        } else {
-            print("Portrait")
-            imageViewGif!.frame=CGRect(x: 0, y: 300, width: self.view.frame.width, height: 20)
-        }
-    }
-    
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         print(#function)
         self.isPlaying = !(self.isPlaying)
@@ -120,6 +110,7 @@ class AudioPlayerViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        song?.stop()
         super.viewWillDisappear(animated)
         AppUtility.lockOrientation(.all)
     }
@@ -143,11 +134,13 @@ class AudioPlayerViewController: UIViewController {
     @objc func botonTouchPlay(){
         enableGif()
         song?.resume()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSong), userInfo: nil, repeats: true)
     }
     
     @objc func botonTouchPause(){
         disableGif()
         song?.pause()
+        timer?.invalidate()
     }
     
     @objc func slideVolumenChange(){
