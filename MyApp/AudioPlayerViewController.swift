@@ -15,6 +15,10 @@ class AudioPlayerViewController: UIViewController {
     let labelTitulo = UILabel()
     let sliderTrack = UISlider()
     let sliderVolume = UISlider()
+    
+    let buttonPlay = UIButton(type: .system)
+    let buttonStop = UIButton(type: .system)
+    
     var song: Sound?
     var timer: Timer?
     
@@ -22,13 +26,11 @@ class AudioPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSong), userInfo: nil, repeats: true)
-
         view.backgroundColor = UIColor(named: "ColorPrincipal")
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSongSlider), userInfo: nil, repeats: true)
         
         labelTitulo.text = "AudioPlayer"
-        labelTitulo.font = UIFont.systemFont(ofSize: 30)
+        labelTitulo.font = UIFont.systemFont(ofSize: 24)
         labelTitulo.backgroundColor = UIColor(displayP3Red: 1.0, green: 0.0, blue: 0.5, alpha: 0.3)
         labelTitulo.autoresizingMask = .flexibleWidth
         labelTitulo.translatesAutoresizingMaskIntoConstraints = true
@@ -36,15 +38,30 @@ class AudioPlayerViewController: UIViewController {
         labelTitulo.textAlignment = .center
         self.view.addSubview(labelTitulo)
         
-        let buttonPlay = UIButton(type: .system)
+        
         buttonPlay.setTitle("Play", for: .normal)
         buttonPlay.autoresizingMask = .flexibleWidth
         buttonPlay.translatesAutoresizingMaskIntoConstraints = true
         buttonPlay.frame = CGRect(x: 20, y: 100, width: 100, height: 40)
         self.view.addSubview(buttonPlay)
         buttonPlay.addTarget(self, action: #selector(botonTouchPlay), for: .touchUpInside)
+        /*
+        buttonPlay.setTitle("Play", for: .normal)
+        buttonPlay.autoresizingMask = .flexibleWidth
+        buttonPlay.translatesAutoresizingMaskIntoConstraints = true
+        //buttonPlay.frame = CGRect(x: 20, y: 100, width: 100, height: 40)
+        self.view.addSubview(buttonPlay)
+        buttonPlay.addTarget(self, action: #selector(botonTouchPlay), for: .touchUpInside)
         
-        let buttonStop = UIButton(type: .system)
+        self.view.addSubview(buttonPlay)
+        NSLayoutConstraint.activate([
+            buttonPlay.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            //buttonPlay.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8),
+            buttonPlay.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            buttonPlay.widthAnchor.constraint(equalTo: buttonPlay.heightAnchor)
+        ])*/
+        
+        
         buttonStop.setTitle("Stop", for: .normal)
         buttonStop.autoresizingMask = .flexibleWidth
         buttonStop.translatesAutoresizingMaskIntoConstraints = true
@@ -84,9 +101,6 @@ class AudioPlayerViewController: UIViewController {
         song = Sound(url: fileSongURL)
         song?.volume = 1
         song?.play()
-        
-        print("La duracion de la cancion es de ....\( 1.0  / (song!.duration) )")
-        
     }
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -94,12 +108,10 @@ class AudioPlayerViewController: UIViewController {
         self.isPlaying = !(self.isPlaying)
         print("la variable is Playing esta en \(isPlaying)")
         if self.isPlaying {
-            enableGif()
-            song?.resume()
+            playSong()
         }
         else {
-            disableGif()
-            song?.pause()
+            stopSong()
         }
     }
     
@@ -108,6 +120,7 @@ class AudioPlayerViewController: UIViewController {
         AppUtility.lockOrientation(.portrait)
         labelTitulo.text = songTitle
     }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         song?.stop()
@@ -131,25 +144,37 @@ class AudioPlayerViewController: UIViewController {
         imageViewGif!.image = UIImage(named: "stopedGif")
     }
     
-    @objc func botonTouchPlay(){
+    func playSong(){
         enableGif()
         song?.resume()
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSong), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSongSlider), userInfo: nil, repeats: true)
     }
     
-    @objc func botonTouchPause(){
+    func stopSong(){
         disableGif()
         song?.pause()
         timer?.invalidate()
+        timer = nil
+    }
+    
+    @objc func botonTouchPlay(){
+        playSong()
+    }
+    
+    @objc func botonTouchPause(){
+        stopSong()
     }
     
     @objc func slideVolumenChange(){
         song?.volume = sliderVolume.value
     }
     
-    @objc func updateSong(){
+    @objc func updateSongSlider(){
         let porcentual: Double =  ( 1.0  / (song!.duration) )
         sliderTrack.value += Float (porcentual)
+        if(sliderTrack.value == 1){
+            disableGif()
+        }
     }
     
     /*

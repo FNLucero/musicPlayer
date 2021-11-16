@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2625EA94273ED039002AEDEB /* bensound-ukulele.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2625EA93273ED039002AEDEB /* bensound-ukulele.mp3 */; };
 		2625EA97273ED110002AEDEB /* SwiftySound in Frameworks */ = {isa = PBXBuildFile; productRef = 2625EA96273ED110002AEDEB /* SwiftySound */; };
 		2625EA99273F067E002AEDEB /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2625EA98273F067E002AEDEB /* AppUtility.swift */; };
 		265ED495273558AB00981CB0 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265ED494273558AB00981CB0 /* TrackTableViewCell.swift */; };
@@ -28,6 +27,7 @@
 		26B852AE273D82E50061F4EA /* UIImageanimatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B852AD273D82E50061F4EA /* UIImageanimatedGIF.m */; };
 		26B852B0273D925C0061F4EA /* stegosaurus-studio.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26B852AF273D925C0061F4EA /* stegosaurus-studio.gif */; };
 		26BA693E27344FF7002967A0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA693D27344FF7002967A0 /* Protocols.swift */; };
+		26E0B29A274064D500DC1A42 /* bensound-ukulele.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 26E0B299274064D500DC1A42 /* bensound-ukulele.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +48,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2625EA93273ED039002AEDEB /* bensound-ukulele.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-ukulele.mp3"; sourceTree = "<group>"; };
 		2625EA98273F067E002AEDEB /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		265ED494273558AB00981CB0 /* TrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
 		265ED496273567DF00981CB0 /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +75,7 @@
 		26B852AF273D925C0061F4EA /* stegosaurus-studio.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "stegosaurus-studio.gif"; sourceTree = "<group>"; };
 		26BA693D27344FF7002967A0 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		26C81610272B284B00659AE1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		26E0B299274064D500DC1A42 /* bensound-ukulele.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-ukulele.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +128,7 @@
 		26A5C34F2722F49F0063BDF9 /* MyApp */ = {
 			isa = PBXGroup;
 			children = (
-				2625EA93273ED039002AEDEB /* bensound-ukulele.mp3 */,
+				26E0B299274064D500DC1A42 /* bensound-ukulele.mp3 */,
 				26B852AF273D925C0061F4EA /* stegosaurus-studio.gif */,
 				26A5C3502722F49F0063BDF9 /* AppDelegate.swift */,
 				26A5C3522722F49F0063BDF9 /* SceneDelegate.swift */,
@@ -291,8 +291,8 @@
 			files = (
 				26B852B0273D925C0061F4EA /* stegosaurus-studio.gif in Resources */,
 				26A5C35D2722F4A10063BDF9 /* LaunchScreen.storyboard in Resources */,
-				2625EA94273ED039002AEDEB /* bensound-ukulele.mp3 in Resources */,
 				26A5C35A2722F4A10063BDF9 /* Assets.xcassets in Resources */,
+				26E0B29A274064D500DC1A42 /* bensound-ukulele.mp3 in Resources */,
 				26A5C3582722F49F0063BDF9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,7 +528,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "MyApp/MyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -558,7 +558,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "MyApp/MyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

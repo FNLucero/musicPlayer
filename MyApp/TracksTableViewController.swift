@@ -12,15 +12,16 @@ class TracksTableViewController: UITableViewController, ButtonOnCellDelegate {
     var songTitle: String?
     
     func buttonTouchedOnCell(cell: UITableViewCell) {
-        
+        /*
         let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "audioPlayerVC") as? AudioPlayerViewController
         vc?.modalPresentationStyle = .popover
         guard let vc = vc else { return }
         vc.songTitle = self.songTitle
-        self.present(vc, animated: true)
+        self.present(vc, animated: true)*/
          
-        //let vc = AudioPlayerViewController()
-        //self.present(vc,animated: true, completion: nil)
+        let vc = AudioPlayerViewController()
+        vc.songTitle = self.songTitle
+        self.present(vc,animated: true, completion: nil)
     }
     
     
@@ -118,5 +119,7 @@ class TracksTableViewController: UITableViewController, ButtonOnCellDelegate {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
 
 }
