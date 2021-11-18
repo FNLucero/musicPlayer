@@ -12,13 +12,6 @@ class TracksTableViewController: UITableViewController, ButtonOnCellDelegate {
     var songTitle: String?
     
     func buttonTouchedOnCell(cell: UITableViewCell) {
-        /*
-        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "audioPlayerVC") as? AudioPlayerViewController
-        vc?.modalPresentationStyle = .popover
-        guard let vc = vc else { return }
-        vc.songTitle = self.songTitle
-        self.present(vc, animated: true)*/
-         
         let vc = AudioPlayerViewController()
         vc.songTitle = self.songTitle
         self.present(vc,animated: true, completion: nil)
@@ -43,13 +36,11 @@ class TracksTableViewController: UITableViewController, ButtonOnCellDelegate {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songList.count
-        
     }
 
     

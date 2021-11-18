@@ -37,37 +37,33 @@ class AudioPlayerViewController: UIViewController {
         labelTitulo.frame = CGRect(x: 0, y: 50, width: view.frame.width, height: 50)
         labelTitulo.textAlignment = .center
         self.view.addSubview(labelTitulo)
-        
-        
+
         buttonPlay.setTitle("Play", for: .normal)
         buttonPlay.autoresizingMask = .flexibleWidth
-        buttonPlay.translatesAutoresizingMaskIntoConstraints = true
-        buttonPlay.frame = CGRect(x: 20, y: 100, width: 100, height: 40)
-        self.view.addSubview(buttonPlay)
-        buttonPlay.addTarget(self, action: #selector(botonTouchPlay), for: .touchUpInside)
-        /*
-        buttonPlay.setTitle("Play", for: .normal)
-        buttonPlay.autoresizingMask = .flexibleWidth
-        buttonPlay.translatesAutoresizingMaskIntoConstraints = true
-        //buttonPlay.frame = CGRect(x: 20, y: 100, width: 100, height: 40)
+        buttonPlay.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(buttonPlay)
         buttonPlay.addTarget(self, action: #selector(botonTouchPlay), for: .touchUpInside)
         
         self.view.addSubview(buttonPlay)
         NSLayoutConstraint.activate([
-            buttonPlay.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-            //buttonPlay.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8),
-            buttonPlay.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            buttonPlay.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            buttonPlay.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             buttonPlay.widthAnchor.constraint(equalTo: buttonPlay.heightAnchor)
-        ])*/
+        ])
         
         
         buttonStop.setTitle("Stop", for: .normal)
         buttonStop.autoresizingMask = .flexibleWidth
-        buttonStop.translatesAutoresizingMaskIntoConstraints = true
-        buttonStop.frame = CGRect(x: self.view.frame.width-120, y: 100, width: 100, height: 40)
+        buttonStop.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(buttonStop)
         buttonStop.addTarget(self, action: #selector(botonTouchPause), for: .touchUpInside)
+        
+        self.view.addSubview(buttonStop)
+        NSLayoutConstraint.activate([
+            buttonStop.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            buttonStop.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            buttonStop.widthAnchor.constraint(equalTo: buttonStop.heightAnchor)
+        ])
         
         sliderTrack.autoresizingMask = .flexibleWidth
         sliderTrack.translatesAutoresizingMaskIntoConstraints = true
