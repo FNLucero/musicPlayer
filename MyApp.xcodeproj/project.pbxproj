@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2625EA97273ED110002AEDEB /* SwiftySound in Frameworks */ = {isa = PBXBuildFile; productRef = 2625EA96273ED110002AEDEB /* SwiftySound */; };
 		2625EA99273F067E002AEDEB /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2625EA98273F067E002AEDEB /* AppUtility.swift */; };
 		265ED495273558AB00981CB0 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265ED494273558AB00981CB0 /* TrackTableViewCell.swift */; };
 		265ED497273567DF00981CB0 /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265ED496273567DF00981CB0 /* AudioPlayerViewController.swift */; };
@@ -24,6 +23,7 @@
 		26A766FD2732FD39004BA6D1 /* TracksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A766FC2732FD39004BA6D1 /* TracksTableViewController.swift */; };
 		26A84E55272C1D6E004AE62D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A84E54272C1D6E004AE62D /* WelcomeViewController.swift */; };
 		26A84E57272C2DFB004AE62D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A84E56272C2DFB004AE62D /* Model.swift */; };
+		26B592E72746A45200AD6087 /* AudioPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 26B592E62746A45200AD6087 /* AudioPlayer */; };
 		26B852AE273D82E50061F4EA /* UIImageanimatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B852AD273D82E50061F4EA /* UIImageanimatedGIF.m */; };
 		26B852B0273D925C0061F4EA /* stegosaurus-studio.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26B852AF273D925C0061F4EA /* stegosaurus-studio.gif */; };
 		26BA693E27344FF7002967A0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA693D27344FF7002967A0 /* Protocols.swift */; };
@@ -83,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2625EA97273ED110002AEDEB /* SwiftySound in Frameworks */,
+				26B592E72746A45200AD6087 /* AudioPlayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +195,7 @@
 			);
 			name = MyApp;
 			packageProductDependencies = (
-				2625EA96273ED110002AEDEB /* SwiftySound */,
+				26B592E62746A45200AD6087 /* AudioPlayer */,
 			);
 			productName = MyApp;
 			productReference = 26A5C34D2722F49F0063BDF9 /* MyApp.app */;
@@ -271,7 +271,7 @@
 			);
 			mainGroup = 26A5C3442722F49F0063BDF9;
 			packageReferences = (
-				2625EA95273ED110002AEDEB /* XCRemoteSwiftPackageReference "SwiftySound" */,
+				26B592E52746A45100AD6087 /* XCRemoteSwiftPackageReference "AudioPlayerSwift" */,
 			);
 			productRefGroup = 26A5C34E2722F49F0063BDF9 /* Products */;
 			projectDirPath = "";
@@ -696,21 +696,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2625EA95273ED110002AEDEB /* XCRemoteSwiftPackageReference "SwiftySound" */ = {
+		26B592E52746A45100AD6087 /* XCRemoteSwiftPackageReference "AudioPlayerSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/adamcichy/SwiftySound.git";
+			repositoryURL = "https://github.com/tbaranes/AudioPlayerSwift";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2625EA96273ED110002AEDEB /* SwiftySound */ = {
+		26B592E62746A45200AD6087 /* AudioPlayer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2625EA95273ED110002AEDEB /* XCRemoteSwiftPackageReference "SwiftySound" */;
-			productName = SwiftySound;
+			package = 26B592E52746A45100AD6087 /* XCRemoteSwiftPackageReference "AudioPlayerSwift" */;
+			productName = AudioPlayer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

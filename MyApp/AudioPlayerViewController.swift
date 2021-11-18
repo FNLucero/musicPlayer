@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SwiftySound
+import AudioPlayer
 
 class AudioPlayerViewController: UIViewController {
 
@@ -19,7 +19,7 @@ class AudioPlayerViewController: UIViewController {
     let buttonPlay = UIButton(type: .system)
     let buttonStop = UIButton(type: .system)
     
-    var song: Sound?
+    var song: AudioPlayer?
     var timer: Timer?
     
     var imageViewGif: UIImageView?
@@ -90,25 +90,25 @@ class AudioPlayerViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        guard let fileSongURL = Bundle.main.url(forResource: "bensound-ukulele", withExtension: ".mp3") else{
-            return
+        do{
+            song = try AudioPlayer(fileName: "bensound-ukulele.mp3")
+            song?.play()
+            song?.volume = 1.0
         }
-        Sound.enabled = true
-        song = Sound(url: fileSongURL)
-        song?.volume = 1
-        song?.play()
+        catch{
+            print("El sonido ha fallado en inicializar")
+        }
     }
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         print(#function)
-        self.isPlaying = !(self.isPlaying)
-        print("la variable is Playing esta en \(isPlaying)")
-        if self.isPlaying {
+        if !self.isPlaying {
             playSong()
         }
         else {
             stopSong()
         }
+        print("la variable is Playing esta en \(isPlaying)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,14 +141,16 @@ class AudioPlayerViewController: UIViewController {
     }
     
     func playSong(){
+        isPlaying = true
         enableGif()
-        song?.resume()
+        song?.play()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSongSlider), userInfo: nil, repeats: true)
     }
     
     func stopSong(){
+        isPlaying = false
         disableGif()
-        song?.pause()
+        song?.stop()
         timer?.invalidate()
         timer = nil
     }
@@ -166,11 +168,13 @@ class AudioPlayerViewController: UIViewController {
     }
     
     @objc func updateSongSlider(){
+        /*
         let porcentual: Double =  ( 1.0  / (song!.duration) )
         sliderTrack.value += Float (porcentual)
         if(sliderTrack.value == 1){
             disableGif()
         }
+         */
     }
     
     /*
