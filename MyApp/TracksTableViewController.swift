@@ -32,6 +32,23 @@ class TracksTableViewController: UITableViewController, ButtonOnCellDelegate {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let callBack: ( [Track]?, Error? ) -> () = { canciones, error in
+            if error != nil {
+                print("No se pudo obtener la lista de canciones")
+            }
+            else {
+                songList = canciones ?? []
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        let api = APIManager()
+        api.getMusic(completion: callBack)
+    }
 
     // MARK: - Table view data source
 

@@ -14,7 +14,7 @@ class TrackTableViewCell: UITableViewCell {
     
     var labelTitulo = UILabel()
     var labelAlbum = UILabel()
-    var buttonPlay = UIButton(type: .custom)
+    var buttonPlay = PlayStopButton()
     var imageViewAlbum = UIImageView()
     
     
@@ -36,6 +36,9 @@ class TrackTableViewCell: UITableViewCell {
     
     @objc func botonTouchFuncion(){
         if self.parent != nil {
+            
+            buttonPlay.performTwoStateSelection()
+            
             let trackVC = parent as! TracksTableViewController
             trackVC.songTitle = self.track?.title
             trackVC.buttonTouchedOnCell(cell: self)
@@ -57,7 +60,11 @@ class TrackTableViewCell: UITableViewCell {
         labelTitulo.textAlignment = .left
         self.contentView.addSubview(labelTitulo)
         
-        labelAlbum.text = "Album • \(self.track!.album)"
+        labelAlbum.text = "Album • No especificado"
+        if let albumContent = self.track?.album{
+            labelAlbum.text = "Album • \(albumContent)"
+        }
+        
         labelAlbum.font = UIFont.systemFont(ofSize: 10)
         labelAlbum.textColor = UIColor.systemPink
         labelAlbum.autoresizingMask = .flexibleWidth
@@ -75,7 +82,9 @@ class TrackTableViewCell: UITableViewCell {
         buttonPlay.clipsToBounds = true
         buttonPlay.backgroundColor = UIColor.black
         buttonPlay.setImage(UIImage(named: "ImagePlay"), for: .normal)
+        buttonPlay.secondIcon = UIImage(named: "ImagePause")
         buttonPlay.translatesAutoresizingMaskIntoConstraints = false
+        //buttonPlay.performTwoStateSelection()
         
         addSubview(buttonPlay)
         NSLayoutConstraint.activate([

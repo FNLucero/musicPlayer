@@ -24,10 +24,11 @@ class AudioPlayerViewController: UIViewController {
     
     var imageViewGif: UIImageView?
     
+    var porcentualCancion: Double?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "ColorPrincipal")
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSongSlider), userInfo: nil, repeats: true)
         
         labelTitulo.text = "AudioPlayer"
         labelTitulo.font = UIFont.systemFont(ofSize: 24)
@@ -51,7 +52,6 @@ class AudioPlayerViewController: UIViewController {
             buttonPlay.widthAnchor.constraint(equalTo: buttonPlay.heightAnchor)
         ])
         
-        
         buttonStop.setTitle("Stop", for: .normal)
         buttonStop.autoresizingMask = .flexibleWidth
         buttonStop.translatesAutoresizingMaskIntoConstraints = false
@@ -69,6 +69,7 @@ class AudioPlayerViewController: UIViewController {
         sliderTrack.translatesAutoresizingMaskIntoConstraints = true
         sliderTrack.frame = CGRect(x: 20, y: 150, width: self.view.frame.width-40, height: 50)
         self.view.addSubview(sliderTrack)
+        sliderTrack.addTarget(self, action: #selector(slideTrackChange), for: .valueChanged)
         
         let labelVolumen = UILabel()
         labelVolumen.text = "Volumen"
@@ -87,13 +88,18 @@ class AudioPlayerViewController: UIViewController {
         sliderVolume.addTarget(self, action: #selector(slideVolumenChange), for: .valueChanged)
         
         enableGif()
+        
     }
+    
+
     
     override func viewDidAppear(_ animated: Bool) {
         do{
             song = try AudioPlayer(fileName: "bensound-ukulele.mp3")
             song?.play()
             song?.volume = 1.0
+            porcentualCancion = ( 1.0  / Double(song!.duration) )
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSongSlider), userInfo: nil, repeats: true)
         }
         catch{
             print("El sonido ha fallado en inicializar")
@@ -167,14 +173,20 @@ class AudioPlayerViewController: UIViewController {
         song?.volume = sliderVolume.value
     }
     
+    @objc func slideTrackChange(sender: UISlider){
+        stopSong()
+        let posicionActual: Double = Double(sliderTrack.value)
+        let tiempoActualizado = Double(song!.duration) * posicionActual
+        song?.currentTime = TimeInterval( tiempoActualizado )
+        playSong()
+    }
+    
+    
     @objc func updateSongSlider(){
-        /*
-        let porcentual: Double =  ( 1.0  / (song!.duration) )
-        sliderTrack.value += Float (porcentual)
-        if(sliderTrack.value == 1){
-            disableGif()
+        sliderTrack.value += Float (porcentualCancion!)
+        if(sliderTrack.value == 1.0){
+            stopSong()
         }
-         */
     }
     
     /*
