@@ -128,6 +128,7 @@ class AudioPlayerViewController: UIViewController {
         song?.stop()
         super.viewWillDisappear(animated)
         AppUtility.lockOrientation(.all)
+        
     }
     
     func enableGif(){
@@ -200,3 +201,5 @@ class AudioPlayerViewController: UIViewController {
     */
 
 }
+
+

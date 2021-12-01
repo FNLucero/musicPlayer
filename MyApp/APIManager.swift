@@ -47,6 +47,37 @@ class APIManager{
         task.resume()
     }
     
+    func getMusic( ){
+        let url: String = baseURL //+ APIManager.getMusicEndPoint
+        let request: NSMutableURLRequest = NSMutableURLRequest(url: NSURL(string: url)! as URL)
+        request.httpMethod = "GET"
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
+            if error != nil {
+                //completion(nil, error!)
+                songList = []
+            }
+            else {
+                if let data = data {
+                    do{
+                        let dict = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String : Any]
+                        let songs = dict["songs"] as! [[String:Any]]
+                        let songsData = try JSONSerialization.data(withJSONObject: songs, options: .fragmentsAllowed)
+                        let result = try JSONDecoder().decode( [Track].self, from: songsData)
+                        print(result)
+                        //completion (result, nil)
+                        songList = result
+                    }
+                    catch{
+                        print(String(describing: error))
+                    }
+                }
+            }
+        }
+        task.resume()
+    }
+    
     /*
     func getMusic(completion: @escaping ( [Track]?, Error? ) -> () ){
         let url: String = baseURL + APIManager.getMusicEndPoint

@@ -42,6 +42,8 @@ class TrackTableViewCell: UITableViewCell {
             let trackVC = parent as! TracksTableViewController
             trackVC.songTitle = self.track?.title
             trackVC.buttonTouchedOnCell(cell: self)
+            
+            //buttonPlay.performTwoStateSelection()
         }
     }
     
@@ -82,7 +84,9 @@ class TrackTableViewCell: UITableViewCell {
         buttonPlay.clipsToBounds = true
         buttonPlay.backgroundColor = UIColor.black
         buttonPlay.setImage(UIImage(named: "ImagePlay"), for: .normal)
-        buttonPlay.secondIcon = UIImage(named: "ImagePause")
+        buttonPlay.icon = UIImage(named: "ImagePlay")
+        buttonPlay.pauseIcon = UIImage(named: "ImagePause")
+        buttonPlay.playIcon = UIImage(named: "ImagePlay")
         buttonPlay.translatesAutoresizingMaskIntoConstraints = false
         //buttonPlay.performTwoStateSelection()
         
