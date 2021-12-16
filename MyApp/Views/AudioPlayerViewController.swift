@@ -31,6 +31,8 @@ class AudioPlayerViewController: UIViewController {
     var porcentualCancion: Double?
     var loveImage = UIImageView()
     
+    let viewModel: AudioPlayerViewModel = AudioPlayerViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,7 +74,6 @@ class AudioPlayerViewController: UIViewController {
             buttonStop.widthAnchor.constraint(equalTo: buttonStop.heightAnchor)
         ])
         
-        
         buttonDesplegable.setImage(UIImage(systemName: "line.3.horizontal"), for: .normal)
         buttonDesplegable.autoresizingMask = .flexibleWidth
         buttonDesplegable.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +81,7 @@ class AudioPlayerViewController: UIViewController {
         buttonDesplegable.addAction(UIAction(title: "", handler: { (_) in
             print("Default Action")
         }), for: .touchUpInside)
-        buttonDesplegable.menu = addMenuItems()
+        buttonDesplegable.menu = viewModel.addMenuItems()
         
         self.view.addSubview(buttonDesplegable)
         NSLayoutConstraint.activate([
@@ -121,50 +122,10 @@ class AudioPlayerViewController: UIViewController {
         
         agregarGestosImagenCorazon()
         enableGif()
-        
-    }
-    
-    func addMenuItems() -> UIMenu{
-        let actionsDictionary = [BtnOpciones.trash: eliminar, BtnOpciones.download: descargar, BtnOpciones.addPlaylist: agregarAPlaylist, BtnOpciones.share: compartir]
-
-        var items = [UIAction]()
-        //let items = BtnOpciones.allCases
-        
-        for opcion in BtnOpciones.allCases {
-            items.append(.init(title: opcion.title, image: opcion.imagen, handler: {_ in
-                actionsDictionary[opcion]?()
-            }))
-        }
-        return .init(title: "", image: nil, children: items)
-    }
-    
-    func eliminar() -> Void {
-        let cancionABorrar = songList.firstIndex(where: {$0.title == self.songTrack!.title})
-        songList.remove(at : cancionABorrar!)
-        self.showSimplePopUpAlert("Borrado","Se ha borrado la cancion \(self.songTrack?.title ?? "")")
-        print("Delete")
-        //self.viewWillDisappear(true)
-        //self.view.removeFromSuperview()
-    }
-    
-    func descargar() -> Void {
-        DownloadManager.shared.startDownload(url: URL(string: "https://speed.hetzner.de/100MB.bin")!)
-        self.showSimplePopUpAlert("Descarga","Se ha comenzado a descargar \(self.songTrack?.title ?? "")")
-    }
-    
-    func agregarAPlaylist() -> Void {
-        playlistSongs.append(songTrack!)
-        self.showSimplePopUpAlert("Favoritos","Se ha agregado a favoritos: \(self.songTrack?.title ?? "")")
-    }
-    
-    func compartir() -> Void {
-        let shareMenu = UIActivityViewController(activityItems: [""], applicationActivities: nil)
-        shareMenu.popoverPresentationController?.sourceView = self.view
-        self.present(shareMenu, animated: true)
-        print("Share song")
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        viewModel.songTrack = songTrack
         do{
             song = try AudioPlayer(fileName: "bensound-ukulele.mp3")
             song?.play()
@@ -266,7 +227,6 @@ class AudioPlayerViewController: UIViewController {
         self.loveImage.isUserInteractionEnabled = true
         let gestureTap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         self.loveImage.addGestureRecognizer(gestureTap)
-        
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer){
@@ -274,7 +234,6 @@ class AudioPlayerViewController: UIViewController {
         imagenCorazon()
         let indiceCancion = songList.firstIndex(where: {$0.title == self.songTrack!.title})
         songList[indiceCancion!] = songTrack!
-        //let message: String = (self.songTrack!.title ? "Love" : "Unlove")
         self.showSimplePopUpAlert("Love","\(self.songTrack!.love ? "Love" : "Unlove" )")
     }
     
