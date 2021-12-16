@@ -9,25 +9,32 @@ import UIKit
 import AudioPlayer
 
 class AudioPlayerViewController: UIViewController {
-
+    
     var isPlaying: Bool = true
-    var songTitle: String?
+    
+    var songTrack: Track?
     let labelTitulo = UILabel()
     let sliderTrack = UISlider()
     let sliderVolume = UISlider()
     
     let buttonPlay = UIButton(type: .system)
     let buttonStop = UIButton(type: .system)
-    
+    let buttonDesplegable = UIButton(type: .system)
+    var tableView: UITableView = UITableView()
     var song: AudioPlayer?
     var timer: Timer?
+    
+    var cellButton: PlayStopButton?
     
     var imageViewGif: UIImageView?
     
     var porcentualCancion: Double?
+    var loveImage = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sliderVolume.value = 0.0
         view.backgroundColor = UIColor(named: "ColorPrincipal")
         
         labelTitulo.text = "AudioPlayer"
@@ -38,7 +45,7 @@ class AudioPlayerViewController: UIViewController {
         labelTitulo.frame = CGRect(x: 0, y: 50, width: view.frame.width, height: 50)
         labelTitulo.textAlignment = .center
         self.view.addSubview(labelTitulo)
-
+        
         buttonPlay.setTitle("Play", for: .normal)
         buttonPlay.autoresizingMask = .flexibleWidth
         buttonPlay.translatesAutoresizingMaskIntoConstraints = false
@@ -65,6 +72,23 @@ class AudioPlayerViewController: UIViewController {
             buttonStop.widthAnchor.constraint(equalTo: buttonStop.heightAnchor)
         ])
         
+        
+        buttonDesplegable.setImage(UIImage(systemName: "line.3.horizontal"), for: .normal)
+        buttonDesplegable.autoresizingMask = .flexibleWidth
+        buttonDesplegable.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(buttonDesplegable)
+        buttonDesplegable.addAction(UIAction(title: "", handler: { (_) in
+            print("Default Action")
+        }), for: .touchUpInside)
+        buttonDesplegable.menu = addMenuItems()
+        
+        self.view.addSubview(buttonDesplegable)
+        NSLayoutConstraint.activate([
+            buttonDesplegable.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            buttonDesplegable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            buttonDesplegable.widthAnchor.constraint(equalTo: buttonDesplegable.heightAnchor)
+        ])
+        
         sliderTrack.autoresizingMask = .flexibleWidth
         sliderTrack.translatesAutoresizingMaskIntoConstraints = true
         sliderTrack.frame = CGRect(x: 20, y: 150, width: self.view.frame.width-40, height: 50)
@@ -87,11 +111,58 @@ class AudioPlayerViewController: UIViewController {
         self.view.addSubview(sliderVolume)
         sliderVolume.addTarget(self, action: #selector(slideVolumenChange), for: .valueChanged)
         
+        self.view.addSubview(loveImage)
+        self.imagenCorazon()
+        loveImage.translatesAutoresizingMaskIntoConstraints=false
+        loveImage.topAnchor.constraint(equalTo:self.view.topAnchor, constant: 10).isActive = true
+        loveImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        loveImage.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        loveImage.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        agregarGestosImagenCorazon()
         enableGif()
         
     }
     
+    func addMenuItems() -> UIMenu{
+        let actionsDictionary = [BtnOpciones.trash: eliminar, BtnOpciones.download: descargar, BtnOpciones.addPlaylist: agregarAPlaylist, BtnOpciones.share: compartir]
 
+        var items = [UIAction]()
+        //let items = BtnOpciones.allCases
+        
+        for opcion in BtnOpciones.allCases {
+            items.append(.init(title: opcion.title, image: opcion.imagen, handler: {_ in
+                actionsDictionary[opcion]?()
+            }))
+        }
+        return .init(title: "", image: nil, children: items)
+    }
+    
+    func eliminar() -> Void {
+        let cancionABorrar = songList.firstIndex(where: {$0.title == self.songTrack!.title})
+        songList.remove(at : cancionABorrar!)
+        self.showSimplePopUpAlert("Borrado","Se ha borrado la cancion \(self.songTrack?.title ?? "")")
+        print("Delete")
+        //self.viewWillDisappear(true)
+        //self.view.removeFromSuperview()
+    }
+    
+    func descargar() -> Void {
+        DownloadManager.shared.startDownload(url: URL(string: "https://speed.hetzner.de/100MB.bin")!)
+        self.showSimplePopUpAlert("Descarga","Se ha comenzado a descargar \(self.songTrack?.title ?? "")")
+    }
+    
+    func agregarAPlaylist() -> Void {
+        playlistSongs.append(songTrack!)
+        self.showSimplePopUpAlert("Favoritos","Se ha agregado a favoritos: \(self.songTrack?.title ?? "")")
+    }
+    
+    func compartir() -> Void {
+        let shareMenu = UIActivityViewController(activityItems: [""], applicationActivities: nil)
+        shareMenu.popoverPresentationController?.sourceView = self.view
+        self.present(shareMenu, animated: true)
+        print("Share song")
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         do{
@@ -120,15 +191,17 @@ class AudioPlayerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppUtility.lockOrientation(.portrait)
-        labelTitulo.text = songTitle
+        labelTitulo.text = songTrack?.title
     }
-    
     
     override func viewWillDisappear(_ animated: Bool) {
         song?.stop()
+        cellButton?.performTwoStateSelection()
+        self.tableView.reloadData()
+        //PONER EL RELOAD ACA
+        
         super.viewWillDisappear(animated)
         AppUtility.lockOrientation(.all)
-        
     }
     
     func enableGif(){
@@ -182,7 +255,6 @@ class AudioPlayerViewController: UIViewController {
         playSong()
     }
     
-    
     @objc func updateSongSlider(){
         sliderTrack.value += Float (porcentualCancion!)
         if(sliderTrack.value == 1.0){
@@ -190,16 +262,30 @@ class AudioPlayerViewController: UIViewController {
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func agregarGestosImagenCorazon(){
+        self.loveImage.isUserInteractionEnabled = true
+        let gestureTap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        self.loveImage.addGestureRecognizer(gestureTap)
+        
     }
-    */
-
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer){
+        self.songTrack!.love = !self.songTrack!.love
+        imagenCorazon()
+        let indiceCancion = songList.firstIndex(where: {$0.title == self.songTrack!.title})
+        songList[indiceCancion!] = songTrack!
+        //let message: String = (self.songTrack!.title ? "Love" : "Unlove")
+        self.showSimplePopUpAlert("Love","\(self.songTrack!.love ? "Love" : "Unlove" )")
+    }
+    
+    func imagenCorazon(){
+        if self.songTrack!.love{
+            loveImage.image = UIImage(systemName: "heart.fill")
+        }
+        else{
+            loveImage.image = UIImage(systemName: "heart")
+        }
+    }
 }
 
 

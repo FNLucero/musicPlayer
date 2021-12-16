@@ -30,8 +30,18 @@ class RegisterViewController: UIViewController {
     
     @IBAction func register(_ sender: Any) {
         print(#function)
-
-        validateTextfields() ? print("Email valido") : print("Usuario invalido: Codigo de error \(tipoError)")
+        
+        if validateTextfields() {
+            print("Email valido")
+            goToMainController()
+        }
+        else{
+            email.text = ""
+            email.errorAnimated()
+            print("Usuario invalido: Codigo de error \(tipoError)")
+        }
+        
+        
     }
     
     @IBAction func dismiss(_ sender: Any) {
@@ -57,7 +67,7 @@ class RegisterViewController: UIViewController {
             tipoError = 1
             return false
         }
-        guard validateEmailStructure(email: emailString), emailString.count >= 10 else{
+        guard emailString.isValidEmail(), emailString.count >= 10 else{
             print("El email no tiene @ o tiene menos de 10 caracteres")
             tipoError = 2
             return false
@@ -66,13 +76,13 @@ class RegisterViewController: UIViewController {
     }
     
     /**
-    Funcion que valida por medio de una regex si un email es valido o no, devolviendo un booleano
+     Funcion que direcciona a MainController
      */
-    func validateEmailStructure(email contentString: String) -> Bool {
-        let patron = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let regExp = try! NSRegularExpression(pattern: patron, options: [])
-        let coincidencias = regExp.matches(in: contentString, options: [], range: NSRange(location: 0, length: contentString.count))
-        return coincidencias.count == 1 ? true : false
+    func goToMainController() {
+        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "InicioTabBarViewController") as? UITabBarController
+          vc?.modalPresentationStyle = .fullScreen
+        guard let vc = vc else { return }
+        self.present(vc, animated: true)
     }
     
     /**

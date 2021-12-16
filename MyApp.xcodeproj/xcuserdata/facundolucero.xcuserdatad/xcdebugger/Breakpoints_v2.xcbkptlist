@@ -46,8 +46,8 @@
             filePath = "MyApp/AudioPlayerViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "slideTrackChange(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -55,16 +55,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "36A6B1E4-96E4-468A-BB90-0343B1E52CBA"
-            shouldBeEnabled = "Yes"
+            uuid = "B0EDE62C-8DC3-437A-A285-4DB20B2826D8"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyApp/Utils/APIManager.swift"
+            filePath = "MyApp/AudioPlayerViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "getMusic(completion:)"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "addMenuItems()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AD76BB0E-6309-40D6-AC06-E4EDEE9091FD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyApp/AudioPlayerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "eliminar()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
