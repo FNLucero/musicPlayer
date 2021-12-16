@@ -8,22 +8,16 @@
 import UIKit
 
 class PlayListDetailController: UIViewController, TracksPickerDelegate, UITableViewDataSource, UITableViewDelegate {
-    //let playListNameTextField: UITextField = UITextField()
     
-    var playList : [Track] = []
-    
-    var tracksArray = [Track]()
-    //var playList = playlistSongs
+    ////var playList : [Track] = []
+    ////var tracksArray = [Track]()
     
     var playListNameTextField = UITextField()
     var playListTrackContent: UITableView = UITableView()
     var addSongBtn = UIButton()
+    var viewModel: PlayListDetailViewModel = PlayListDetailViewModel()
     
     override func viewDidLoad() {
-        //super.viewDidLoad()
-        //self.tableView.reloadData()
-        
-        
         super.viewDidLoad()
         self.view.addSubview(playListNameTextField)
         self.view.backgroundColor = .black
@@ -32,7 +26,6 @@ class PlayListDetailController: UIViewController, TracksPickerDelegate, UITableV
         playListNameTextField.backgroundColor = UIColor.systemPink.withAlphaComponent(0.9)
         playListNameTextField.textColor = .white
         playListNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        //playListNameTextField.topAnchor.constraint(equalTo:self.view.topAnchor, constant: 20).isActive = true
         playListNameTextField.topAnchor.constraint(equalTo:self.view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         playListNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         playListNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70).isActive = true
@@ -62,14 +55,6 @@ class PlayListDetailController: UIViewController, TracksPickerDelegate, UITableV
         playListTrackContent.register(UITableViewCell.self, forCellReuseIdentifier: "track")
         playListTrackContent.dataSource = self
         playListTrackContent.delegate = self
-        
-        
-    }
-    
-    func addTrack(track: Track) {
-        playList.append(track)
-        tracksArray = playList
-        playListTrackContent.reloadData()
     }
 
     @objc func showView() {
@@ -80,12 +65,14 @@ class PlayListDetailController: UIViewController, TracksPickerDelegate, UITableV
 
     // MARK: - TableView Datasource & Delegate
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         tracksArray.count
+         //tracksArray.count
+         viewModel.countOfLines()
      }
      
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "track", for: indexPath)
-         let track = tracksArray[indexPath.row]
+         //let track = tracksArray[indexPath.row]
+         let track = viewModel.trackArrayIndex(indexPath.row)
          cell.textLabel?.text = track.title
          return cell
      }
@@ -93,7 +80,6 @@ class PlayListDetailController: UIViewController, TracksPickerDelegate, UITableV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppUtility.lockOrientation(.portrait)
-        //playList = playlistSongs
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -103,19 +89,19 @@ class PlayListDetailController: UIViewController, TracksPickerDelegate, UITableV
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //self.playListTrackContent.reloadData()
         
         playlistSongs.forEach{ cancion in
-            if !self.doesntContentElement(cancion){
+            if !viewModel.doesntContentElement(cancion){
                 self.addTrack(track: cancion)
             }
         }
     }
-    func doesntContentElement(_ cancion: Track) -> Bool{
-        //songList.contains{$0.title == "Bridge Burning"
-        return playList.contains{titulo in
-            titulo.title == cancion.title
-        }
+    
+    func addTrack(track: Track) {
+        //playList.append(track)
+        //tracksArray = playList
+        viewModel.addTrack(track)
+        playListTrackContent.reloadData()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

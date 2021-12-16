@@ -38,7 +38,6 @@ class TracksTableViewController: UITableViewController, ButtonOnCellDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(agregarCancionPorTimer), userInfo: nil, repeats: true)
         timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true){ t in
             NotificationCenter.default.post(name: NSNotification.Name("updateTable"), object: nil)
         }
@@ -184,14 +183,10 @@ class TracksTableViewController: UITableViewController, ButtonOnCellDelegate {
         let elTrack = songList[indexPath.row]
         let claseCell = TrackTableViewCell(style: .default, reuseIdentifier: "reuseIdentifier", track: elTrack)
         
-        //cell.track = elTrack
-        //cell.parent = self
-        
         claseCell.track = elTrack
         claseCell.parent = self as ButtonOnCellDelegate
         
         return claseCell
-        //return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
