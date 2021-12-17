@@ -132,4 +132,8 @@ enum BtnOpciones: CaseIterable {
     }
 }
 
-
+extension Track {
+    mutating func loveChange(_ index: Int) {
+        self.love = !self.love
+    }
+}

@@ -13,7 +13,7 @@ class TracksTableViewController: UITableViewController, ButtonOnCellDelegate {
     var songTitle: String?
     var songTrack: Track?
     var buttonPlay: PlayStopButton?
-    
+    var flag: Bool = true
     var timer: Timer?
     let viewModel: TracksTableViewModel = TracksTableViewModel()
     
@@ -71,8 +71,10 @@ class TracksTableViewController: UITableViewController, ButtonOnCellDelegate {
          }
          let api = APIManager()
          api.getMusic(completion: callBack)*/
-        
-        viewModel.saveData()
+        if flag{
+            viewModel.saveData()
+            flag = false
+        }
         self.tableView.reloadData()
     }
     

@@ -126,6 +126,7 @@ class AudioPlayerViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         viewModel.songTrack = songTrack
+        viewModel.delegate = self
         do{
             song = try AudioPlayer(fileName: "bensound-ukulele.mp3")
             song?.play()

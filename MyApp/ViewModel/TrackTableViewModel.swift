@@ -6,10 +6,10 @@
 //
 
 import Foundation
+import UIKit
 import CoreData
 
 class TracksTableViewModel {
-    
     func saveData(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let context = appDelegate.managedObjectContext
@@ -39,7 +39,8 @@ class TracksTableViewModel {
         }
         
         //Consigna de tener internet en un if
-        if APIManager().checkConnectivity(){
+        if APIManager().checkConnectivity() {
+        //if false{
             self.downloadTracks()
         }
     }
